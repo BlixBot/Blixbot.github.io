@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title>Commands &bull; Shadebot</title>
+  	<style>
+  	.sb-header{background:-webkit-linear-gradient(45deg,hsla(335,100%,55%,1) 0,hsla(335,100%,55%,0) 70%),-webkit-linear-gradient(315deg,hsla(262,95%,50%,1) 10%,hsla(262,95%,50%,0) 80%),-webkit-linear-gradient(225deg,hsla(307,90%,50%,1) 10%,hsla(307,90%,50%,0) 80%),-webkit-linear-gradient(135deg,hsla(224,100%,30%,1) 100%,hsla(224,100%,30%,0) 70%)!important;color:#FFF!important;text-align:center!important}.btncw-hover:hover{transition:all .15s ease-in-out;color:#343a40!important}body{background-color:#212121!important;color:#f8f9fa!important}.content-centre{margin:auto;text-align:center;display:block}.git-pl{text-decoration:none;color:inherit}footer{font-size:13.5px;padding-top:50px}.stylish-input-group .input-group-addon{background:#fff!important}.stylish-input-group .form-control{border-right:0;box-shadow:0 0 0;border-color:#ccc}.stylish-input-group button{border:0;background:0 0}
+	</style>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/ico" href="favicon.ico" />
+    <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <meta name="theme-color" content="#880FCC" />
+  </head>
+  <body>
+  	<noscript><meta http-equiv="refresh" content="0;url=https://shadebot.github.io/nojavascript"></noscript>
+    <div class="jumbotron sb-header jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Commands</h1>
+    <p class="lead">Shadebot Command Reference</p>
+    <a href="/"><button type="button" class="btn btn-outline-light btncw-hover"><i class="mdi mdi-arrow-left"></i> Back to frontpage</button></a>
+  </div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="input-group stylish-input-group">
+        <input type="text" class="Input search form-control"  placeholder="Search" >
+          <span class="input-group-addon">
+            <button type="submit">
+              <span class="mdi mdi-magnify"></span>
+            </button>  
+          </span>
+        </div>
+        <br/>
+		<table class="table table-striped results table-inverse table-responsive">
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<tr>
+    	<td colspan="2"><center><b>General Commands</b></center></td>
+    </tr>
+    <tr>
+      <td>#channelinfo [#channel]</td>
+      <td>Find information about a channel</td>
+    </tr>
+    <tr>
+      <td>#color (hex color)</td>
+      <td>Shows information and a preview of a hex color</td>
+    </tr>
+    <tr>
+      <td>#help [command]</td>
+      <td>Displays all the available commands or specific command's help</td>
+    </tr>
+    <tr>
+    	<td>#stats</td>
+    	<td>Gives some useful bot statistics</td>
+    </tr>
+    <tr>
+    	<td>#userinfo [user search, id, @user]</td>
+    	<td>Gets useful information about a user</td>
+    </tr>
+    <tr>
+    	<td>#serverinfo</td>
+    	<td>Get useful information about the server</td>
+    </tr>
+    <tr>
+    	<td>#roleinfo [role search, id, @role]</td>
+	    <td>Get useful information about a role</td>
+    </tr>
+    <tr>
+    	<td colspan="2"><center><b>Moderator-Only Commands</b></center></td>
+    </tr>
+    <tr>
+    	<td>#checkgame (search)</td>
+    	<td>Returns a list of members with an specific game.</td>
+    </tr>
+    <tr>
+    	<td>#clear [@user] (number)</td>
+    	<td>Deletes messages from anyone in the channel.</td>
+    </tr>
+    <tr>
+    	<td>#ghostban (id)</td>
+    	<td>Bans a user from an ID. Even when they aren't on the server.</td>
+    </tr>
+    <tr>
+    	<td>#mute (@user) [time]</td>
+    	<td>Mutes or unmutes a mentioned user</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<footer class="content-centre">Created with <i class="mdi mdi-code-tags"></i> by <a class="git-pl" href="https://github.com/Alipoodle">Alipoodle</a> and <a class="git-pl" href="https://github.com/dintendocoltd">Dominic</a> - Licensed under GNU GPLv3</footer>
+<br/>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+	$(document).ready(function() {
+	  $(".search").keyup(function () {
+	    var searchTerm = $(".search").val();
+	    var listItem = $('.results tbody').children('tr');
+	    var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
+	    
+	  $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
+	        return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+	    }
+	  });
+	    
+	  $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
+	    $(this).hide();
+	  });
+	  $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
+	    $(this).show();
+	  });
+	      });
+	});
+	</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+  </body>
+</html>
